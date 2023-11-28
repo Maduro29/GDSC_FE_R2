@@ -1,0 +1,49 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    width: 100%;
+
+    button {
+        outline: none;
+        border: none;
+        background-color: #fff;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .header-1 {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 20px;
+        font-weight: bold;
+
+        img {
+            height: 100%;
+        }
+    }
+
+    .header-2 {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        .header-2-des {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            i {
+                font-size: 18px;
+            }
+
+            span {
+                font-weight: 500;
+                font-size: 19px;
+            }
+        }
+    }
+}
