@@ -2,18 +2,18 @@ import './ItemCard.scss'
 
 const ItemCard = (props) => {
 
-    const { name, price, image } = props;
-    console.log('check props: ', name, price, image)
+    const { item } = props;
+    console.log('check props: ', item)
 
     return <>
         <div className="item-card">
             <div className='box-img'>
-                <img src={image}></img>
+                <img src={item.image}></img>
             </div>
             <div className='item-info'>
-                <span>{name}</span>
+                <span>{item.name}</span>
                 <div className='item-option'>
-                    <span className='item-price'>${price.toFixed(2)}</span>
+                    <span className='item-price'>${item.price.toFixed(2)}</span>
                     <button className='item-add-button'>
                         <span>Add to cart</span>
                     </button>
