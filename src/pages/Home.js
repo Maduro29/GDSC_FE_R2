@@ -1,11 +1,11 @@
 import React from 'react'
-import Header from '../component/Header'
 import './Home.scss'
+import Banner from '../component/Banner'
 
 const Home = () => {
   return (
     <div className='home'>
-      <Header />
+      <Banner />
     </div>
   )
 }
