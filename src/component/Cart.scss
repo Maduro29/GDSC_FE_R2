@@ -10,6 +10,7 @@
     border-radius: 4px;
     // display: block !important;
     position: relative;
+    cursor: default;
 
     &:before {
         content: '';
@@ -21,5 +22,26 @@
         top: -10px;
         z-index: -2;
         background-color: none;
+    }
+
+    .cart-payment {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        padding-top: 20px;
+
+        span {
+            font-weight: 700 !important;
+            font-size: 18px !important;
+        }
+
+        button {
+            background-color: #EB6440;
+            color: white;
+            padding: 8px 35px;
+            font-size: 14px;
+            border-radius: 8px;
+        }
     }
 }
