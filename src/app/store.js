@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import wishlistReducer from './wishlistSlice';
+import cartReducer from './cartSlice';
 
 const saveToLocalStorage = (state) => {
     try {
         const serialisedState = JSON.stringify(state);
-        localStorage.setItem('wishlist', serialisedState);
+        localStorage.setItem('state', serialisedState);
     } catch (e) {
         console.warn(e);
     }
@@ -12,7 +13,7 @@ const saveToLocalStorage = (state) => {
 
 const loadFromLocalStorage = () => {
     try {
-        const serialisedState = localStorage.getItem('wishlist');
+        const serialisedState = localStorage.getItem('state');
         if (serialisedState === null) return undefined;
         return JSON.parse(serialisedState);
     } catch (e) {
@@ -24,6 +25,7 @@ const loadFromLocalStorage = () => {
 const store = configureStore({
     reducer: {
         wishlist: wishlistReducer,
+        cart: cartReducer,
     },
     preloadedState: loadFromLocalStorage(),
 });

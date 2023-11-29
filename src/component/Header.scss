@@ -63,5 +63,22 @@
                 }
             }
         }
+
+        .header-cart {
+            position: relative;
+
+            .cart {
+                display: none;
+                position: absolute;
+            }
+
+            &:hover {
+                color: #EB6440;
+
+                .cart {
+                    display: block;
+                }
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addToWishlist, removeFromWishlist } from '../app/wishlistSlice';
+import { addToCart } from '../app/cartSlice';
 import './ItemCard.scss'
 
 const ItemCard = (props) => {
@@ -19,6 +20,11 @@ const ItemCard = (props) => {
         }
     }
 
+    const handleAddToCartClick = () => {
+        dispatch(addToCart(item));
+        // console.log('cmn')
+    }
+
     return (
         <div className="item-card">
             <div className='box-img'>
@@ -29,7 +35,7 @@ const ItemCard = (props) => {
                 <span>{item.name}</span>
                 <div className='item-option'>
                     <span className='item-price'>${item.price.toFixed(2)}</span>
-                    <button className='item-add-button'>
+                    <button className='item-add-button' onClick={handleAddToCartClick}>
                         <span>Add to cart</span>
                     </button>
                 </div>
