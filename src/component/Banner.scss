@@ -37,8 +37,20 @@
                 background-color: #EB6440;
                 padding: 14px;
                 border-radius: 10px;
+                outline: none;
+                border: none;
+
+                &:hover {
+                    cursor: pointer;
+                }
+
+                span {
+                    font-size: 14px;
+                    color: white;
+                }
 
                 i {
+                    color: white;
                     padding-left: 10px;
                 }
             }

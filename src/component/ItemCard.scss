@@ -4,6 +4,7 @@
     flex-direction: column;
     align-items: flex-start;
     margin-top: 60px;
+    position: relative;
 
     .box-img {
         img {
@@ -13,6 +14,18 @@
         background-color: #f3f3f3;
         padding: 40px 10px;
         border-radius: 10px;
+
+        i {
+            color: #EB6440;
+            font-size: 22px;
+            position: absolute;
+            top: 30px;
+            right: 26px;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
     }
 
     .item-info {

@@ -1,3 +1,5 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { addToWishlist, removeFromWishlist } from '../app/wishlistSlice';
 import './ItemCard.scss'
 
 const ItemCard = (props) => {
@@ -5,10 +7,23 @@ const ItemCard = (props) => {
     const { item } = props;
     console.log('check props: ', item)
 
-    return <>
+    const dispatch = useDispatch();
+    const wishlist = useSelector(state => state.wishlist);
+    const isWishlisted = wishlist.some(wishlistItem => wishlistItem._id === item._id);
+
+    const handleWishlistClick = () => {
+        if (isWishlisted) {
+            dispatch(removeFromWishlist(item));
+        } else {
+            dispatch(addToWishlist(item));
+        }
+    }
+
+    return (
         <div className="item-card">
             <div className='box-img'>
-                <img src={item.image}></img>
+                <img src={item.image} alt={item.name} />
+                <i className={isWishlisted ? 'fas fa-heart' : 'far fa-heart'} onClick={handleWishlistClick}></i>
             </div>
             <div className='item-info'>
                 <span>{item.name}</span>
@@ -20,7 +35,7 @@ const ItemCard = (props) => {
                 </div>
             </div>
         </div>
-    </>
+    );
 }
 
-export default ItemCard
+export default ItemCard;

@@ -46,5 +46,22 @@
                 font-size: 19px;
             }
         }
+
+        .header-wishlist {
+            position: relative;
+
+            .wishlist {
+                display: none;
+                position: absolute;
+            }
+
+            &:hover {
+                color: #EB6440;
+
+                .wishlist {
+                    display: block;
+                }
+            }
+        }
     }
 }

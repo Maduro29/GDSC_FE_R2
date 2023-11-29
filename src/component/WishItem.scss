@@ -1,0 +1,44 @@
+.wish-item {
+    height: 120px;
+    display: flex;
+    // justify-content: space-between;
+    gap: 30px;
+    align-items: center;
+
+    .wish-image {
+        height: 80%;
+    }
+
+    .wish-info {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        height: 80%;
+
+        .wish-name {
+            color: #5c5c5c;
+            font-weight: 700 !important;
+            font-size: 14px !important;
+        }
+
+        .wish-price {
+            font-weight: 700 !important;
+            font-size: 16px;
+        }
+
+        button {
+            color: #EB6440;
+            border: 2px solid #EB6440;
+            border-radius: 8px;
+            width: 100%;
+            padding: 4px 0;
+
+            &:hover {
+                color: white;
+                background-color: #EB6440;
+            }
+        }
+    }
+}

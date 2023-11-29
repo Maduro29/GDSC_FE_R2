@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import Logo from '../assets/images/dinosaur.png'
 import './Header.scss'
+import Wishlist from './Wishlist';
 
 const Header = () => {
 
@@ -24,6 +25,7 @@ const Header = () => {
                 <button className='header-wishlist header-2-des'>
                     <i className="fas fa-heart"></i>
                     <span className='header-cart-text'>Wishlist</span>
+                    <Wishlist />
                 </button>
             </div>
         </div>
