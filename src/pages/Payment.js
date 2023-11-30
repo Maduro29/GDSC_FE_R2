@@ -4,11 +4,11 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 import OrderItem from '../component/OrderItem';
 import FlexLine from '../component/FlexLine';
 import { useEffect, useState } from 'react';
+import Modal from '../component/Modal';
 
 const Payment = () => {
 
     const cart = useSelector(state => state.cart);
-    console.log(cart, 'check cart payment');
 
     const total = cart.reduce((total, item) => total + item.price * item.quantity, 0)
     const shipmentCost = 6.5;
@@ -25,6 +25,9 @@ const Payment = () => {
     const [cvv, setCvv] = useState(0);
     const [numberOfItems, setNumberOfItems] = useState(0);
     const [orderTotal, setOrderTotal] = useState(0);
+
+    const [show, setShow] = useState(false);
+    const [modalData, setModalData] = useState(null);
 
     const navigate = useNavigate();
 
@@ -69,6 +72,15 @@ const Payment = () => {
         setCvv(event.target.value);
     };
 
+    const showModal = () => {
+        // setModalData();
+        setShow(true);
+    }
+
+    const hideModal = () => {
+        setShow(false);
+    }
+
     const handleConfirm = (e) => {
         e.preventDefault();
 
@@ -85,8 +97,6 @@ const Payment = () => {
             orderTotal: orderTotal
         };
 
-        console.log('check state: ', stateObject)
-
         fetch('https://dinomerch.onrender.com/api/payment', {
             method: 'POST',
             headers: {
@@ -95,9 +105,18 @@ const Payment = () => {
             body: JSON.stringify(stateObject)
         })
             .then(response => response.json())
-            .then(data => console.log(data))
+            .then(data => {
+                console.log(data);
+                if (data.message && data.message.startsWith('E11000 duplicate')) {
+                    // Show the modal with the data
+                    setTransactionDate(new Date());
+                    showModal();
+                }
+            })
             .catch(error => console.error('Error:', error));
     }
+
+    const [transactionDate, setTransactionDate] = useState(null);
 
     return (
         <>
@@ -186,6 +205,7 @@ const Payment = () => {
                     </div>
                 </form>
             </div>
+            {show && <Modal closeModal={hideModal} grandTotal={total} transactionDate={transactionDate} />}
         </>
     )
 }

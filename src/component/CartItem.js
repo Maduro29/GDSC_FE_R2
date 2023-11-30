@@ -6,7 +6,6 @@ import toast from 'react-hot-toast';
 const CartItem = (props) => {
 
     const { item } = props;
-    console.log('check props: ', item)
 
     const dispatch = useDispatch();
 

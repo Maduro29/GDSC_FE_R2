@@ -4,7 +4,6 @@ const OrderItem = (props) => {
 
     const { item } = props;
 
-    console.log('check item in payment: ', item)
 
     return <>
         <div className="order-item">

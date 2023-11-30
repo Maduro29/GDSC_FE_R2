@@ -4,7 +4,6 @@ const FlexLine = (props) => {
 
     const { text, number } = props;
 
-    console.log(text, number, 'check props flexline')
 
     return <>
         <div className="flex-line">

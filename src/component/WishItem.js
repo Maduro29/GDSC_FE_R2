@@ -6,7 +6,6 @@ import toast from 'react-hot-toast';
 const WishItem = (props) => {
 
     const { item } = props;
-    console.log('check props: ', item)
 
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cart); // Get the current state of the cart

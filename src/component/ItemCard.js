@@ -7,7 +7,6 @@ import toast from 'react-hot-toast';
 const ItemCard = (props) => {
 
     const { item } = props;
-    console.log('check props: ', item)
 
     const dispatch = useDispatch();
     const wishlist = useSelector(state => state.wishlist);
