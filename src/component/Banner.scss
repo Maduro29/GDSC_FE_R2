@@ -24,13 +24,14 @@
             align-items: flex-start;
             text-align: left;
 
-            h1 {
-                font-size: 42px;
-            }
-
             span {
                 font-size: 32px;
                 font-weight: 500;
+            }
+
+            .banner-title {
+                font-size: 42px;
+                font-weight: bold;
             }
 
             .scroll-down {

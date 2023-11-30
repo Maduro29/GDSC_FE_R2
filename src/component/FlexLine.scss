@@ -1,0 +1,11 @@
+.flex-line {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    color: #5f5f5f;
+    padding: 0px 20px;
+
+    span {
+        font-size: 16px !important;
+    }
+}
