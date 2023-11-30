@@ -40,11 +40,11 @@ function Modal(props) {
                         <span className='modal-bold'>$ {props.grandTotal.toFixed(2)}</span>
                     </div>
                     <div className="modal-component bottom">
-                        <FlexLine text='Tax collected: ' number={6.50}></FlexLine>
-                        <FlexLine text='Shipment cost: ' number={0.8}></FlexLine>
+                        <FlexLine text='Tax collected: ' number={props.shipmentCost}></FlexLine>
+                        <FlexLine text='Shipment cost: ' number={props.taxCollected}></FlexLine>
                     </div>
                     <div className="modal-total modal-bold">
-                        <FlexLine text='Grand total: ' number={props.grandTotal + 6.5 + 0.8}></FlexLine>
+                        <FlexLine text='Grand total: ' number={props.grandTotal + props.shipmentCost + props.taxCollected}></FlexLine>
                     </div>
                     <div className="modal-footer">
                         <button className="btn btn-primary" onClick={(e) => handleContinue(e)}>Continue Shopping</button>

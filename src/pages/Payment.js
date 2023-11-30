@@ -205,7 +205,7 @@ const Payment = () => {
                     </div>
                 </form>
             </div>
-            {show && <Modal closeModal={hideModal} grandTotal={total} transactionDate={transactionDate} />}
+            {show && <Modal closeModal={hideModal} grandTotal={total} transactionDate={transactionDate} shipmentCost={shipmentCost} taxCollected={taxCollected} />}
         </>
     )
 }
