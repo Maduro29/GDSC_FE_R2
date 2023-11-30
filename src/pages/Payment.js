@@ -3,14 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import OrderItem from '../component/OrderItem';
 import FlexLine from '../component/FlexLine';
+import { useEffect, useState } from 'react';
 
 const Payment = () => {
-
-    const navigate = useNavigate();
-
-    const handleBack = () => {
-        navigate('/')
-    }
 
     const cart = useSelector(state => state.cart);
     console.log(cart, 'check cart payment');
@@ -18,7 +13,91 @@ const Payment = () => {
     const total = cart.reduce((total, item) => total + item.price * item.quantity, 0)
     const shipmentCost = 6.5;
     const taxCollected = 0.8;
-    const orderTotal = (total + shipmentCost + taxCollected);
+    const orderTotalPrice = (total + shipmentCost + taxCollected);
+
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [phone, setPhone] = useState(0);
+    const [address, setAddress] = useState('');
+    const [cardName, setCardName] = useState('');
+    const [cardNumber, setCardNumber] = useState(0);
+    const [expDate, setExpDate] = useState('');
+    const [cvv, setCvv] = useState(0);
+    const [numberOfItems, setNumberOfItems] = useState(0);
+    const [orderTotal, setOrderTotal] = useState(0);
+
+    const navigate = useNavigate();
+
+    const handleBack = () => {
+        navigate('/')
+    }
+
+    useEffect(() => {
+        setNumberOfItems(cart.length);
+        setOrderTotal(orderTotalPrice);
+    }, [cart]);
+
+    const handleFirstNameChange = (event) => {
+        setFirstName(event.target.value);
+    }
+
+    const handleLastNameChange = (event) => {
+        setLastName(event.target.value);
+    };
+
+    const handlePhoneChange = (event) => {
+        setPhone(event.target.value);
+    };
+
+    const handleAddressChange = (event) => {
+        setAddress(event.target.value);
+    };
+
+    const handleCardNameChange = (event) => {
+        setCardName(event.target.value);
+    };
+
+    const handleCardNumberChange = (event) => {
+        setCardNumber(event.target.value);
+    };
+
+    const handleExpDateChange = (event) => {
+        setExpDate(event.target.value);
+    };
+
+    const handleCvvChange = (event) => {
+        setCvv(event.target.value);
+    };
+
+    const handleConfirm = (e) => {
+        e.preventDefault();
+
+        const stateObject = {
+            firstName: firstName,
+            lastName: lastName,
+            phone: phone,
+            address: address,
+            cardName: cardName,
+            cardNumber: cardNumber,
+            expDate: expDate,
+            cvv: cvv,
+            numberOfItems: numberOfItems,
+            orderTotal: orderTotal
+        };
+
+        console.log('check state: ', stateObject)
+
+        fetch('https://dinomerch.onrender.com/api/payment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(stateObject)
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+    }
 
     return (
         <>
@@ -29,30 +108,30 @@ const Payment = () => {
                         <span className='back-text'>Back to home page</span>
                     </button>
                 </div>
-                <form>
+                <form onSubmit={(e) => handleConfirm(e)}>
                     <div className='payment-detail row'>
                         <div className='payment-personal col'>
                             <span className='payment-text-1'>Shipping Address</span>
                             <div className='row'>
                                 <div className='col'>
                                     <label>First Name</label>
-                                    <input tpye='text'></input>
+                                    <input tpye='text' name='firstName' onChange={(e) => handleFirstNameChange(e)}></input>
                                 </div>
                                 <div className='col'>
                                     <label>Last Name</label>
-                                    <input tpye='text'></input>
+                                    <input tpye='text' name='lastName' onChange={(e) => handleLastNameChange(e)}></input>
                                 </div>
                             </div>
                             <div className='row'>
                                 <div className='col'>
                                     <label>Phone Number</label>
-                                    <input type='text'></input>
+                                    <input type='number' name='phone' onChange={(e) => handlePhoneChange(e)}></input>
                                 </div>
                             </div>
                             <div className='row'>
                                 <div className='col'>
                                     <label>Address</label>
-                                    <input type='text'></input>
+                                    <input type='text' name='address' onChange={(e) => handleAddressChange(e)}></input>
                                 </div>
                             </div>
                         </div>
@@ -65,23 +144,23 @@ const Payment = () => {
                             <div className='row'>
                                 <div className='col'>
                                     <label>Cardholder Name</label>
-                                    <input type='text'></input>
+                                    <input type='text' name='cardName' onChange={(e) => handleCardNameChange(e)}></input>
                                 </div>
                             </div>
                             <div className='row'>
                                 <div className='col'>
                                     <label>Card Number</label>
-                                    <input type='text'></input>
+                                    <input type='number' name='cardNumber' onChange={(e) => handleCardNumberChange(e)}></input>
                                 </div>
                             </div>
                             <div className='row'>
                                 <div className='col'>
                                     <label>Expiration Date</label>
-                                    <input tpye='text'></input>
+                                    <input tpye='text' name='expDate' onChange={(e) => handleExpDateChange(e)}></input>
                                 </div>
                                 <div className='col'>
                                     <label>CVV</label>
-                                    <input tpye='text'></input>
+                                    <input tpye='number' name='cvv' onChange={(e) => handleCvvChange(e)}></input>
                                 </div>
                             </div>
                         </div>
@@ -100,7 +179,8 @@ const Payment = () => {
                                     <FlexLine text={'Tax Collected:'} number={taxCollected} />
                                 </div>
                                 <div className='break-line'></div>
-                                <FlexLine text={'Order total:'} number={orderTotal} />
+                                <FlexLine text={'Order total:'} number={orderTotalPrice} />
+                                <input type='submit' value='Confirm order' className='payment-submit'></input>
                             </div>
                         </div>
                     </div>
