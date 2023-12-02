@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const Cart = () => {
     const cart = useSelector(state => state.cart);
 
-    const total = cart.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2)
+    const total = (cart.length ? cart.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2) : 0)
 
     const navigate = useNavigate()
 

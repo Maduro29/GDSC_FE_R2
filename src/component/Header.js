@@ -28,7 +28,7 @@ const Header = () => {
                     <Cart />
                 </button>
                 <button className='header-wishlist header-2-des'>
-                    <i className="fas fa-heart"></i>
+                    <i className="fa-regular fa-heart"></i>
                     <span className='header-cart-text'>Wishlist</span>
                     <Wishlist />
                 </button>

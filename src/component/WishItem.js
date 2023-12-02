@@ -9,7 +9,7 @@ const WishItem = (props) => {
 
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cart); // Get the current state of the cart
-    const isInCart = cart.some(cartItem => cartItem._id === item._id); // Check if the item is already in the cart
+    const isInCart = (cart.length ? cart.some(cartItem => cartItem._id === item._id) : []) // Check if the item is already in the cart
 
     const handleAddToCartClick = () => {
         if (isInCart) {
