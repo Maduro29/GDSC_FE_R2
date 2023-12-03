@@ -12,7 +12,7 @@ const ItemCard = (props) => {
     const wishlist = useSelector(state => state.wishlist);
     const cart = useSelector(state => state.cart);
     const isWishlisted = wishlist.some(wishlistItem => wishlistItem._id === item._id);
-    const isInCart = (cart.length ? cart.some(cartItem => cartItem._id === item._id) : [])
+    const isInCart = (cart.length ? cart.some(cartItem => cartItem._id === item._id) : false)
 
     const handleWishlistClick = () => {
         if (isWishlisted) {
